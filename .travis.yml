@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "0.10"
+
+before_install:
+  - npm update -g npm
+
+script:
+  - ./node_modules/.bin/gulp ci
+
+deploy:
+  provider: npm
+  email: bolczyslaw@gmail.com
+  api_key: $npmApiKey
+  on:
+    branch: master
