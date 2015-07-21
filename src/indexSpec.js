@@ -16,7 +16,9 @@ describe('index loadTasks', function() {
     zkTaskRoadkillMock = jasmine.createSpyObj('zkTaskRoadkillMock', ['getTask']);
     roadkillTask = jasmine.createSpy('roadkillTask');
     gulpMock = jasmine.createSpyObj('gulpMock', ['task']);
-    mode = {};
+    mode = {
+      env: 'dev'
+    };
     options = {};
     zkTaskRoadkillMock.getTask.and.returnValue(roadkillTask);
   });
@@ -76,7 +78,53 @@ describe('index loadTasks', function() {
       };
       loadTestTasks();
       expect(gulpMock.task).not.toHaveBeenCalled();
-      expect(zkTaskRoadkillMock.getTask).not.toHaveBeenCalledWith();
+      expect(zkTaskRoadkillMock.getTask).not.toHaveBeenCalled();
+    });
+
+  });
+
+  describe('when zkTask is passed in object', function() {
+
+    var forceMode;
+
+    function loadTestTasks() {
+      loadTasks(mode, options, gulpMock, {
+        roadkill: {
+          task: zkTaskRoadkillMock,
+          mode: forceMode
+        }
+      });
+    }
+
+    it('and new mode is set should add this mode to current modes', function() {
+      forceMode = {
+        watch: true
+      };
+      loadTestTasks();
+      expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
+        enabled: true,
+        dependencies: []
+      }, gulpMock, {
+        env: 'dev',
+        watch: true
+      });
+    });
+
+    it('and new mode is set should add this mode to current modes', function() {
+      forceMode = {
+        env: 'prod'
+      };
+      loadTestTasks();
+      expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
+        enabled: true,
+        dependencies: []
+      }, gulpMock, {
+        env: 'prod'
+      });
+    });
+
+    afterEach(function() {
+      expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
     });
 
   });
@@ -92,13 +140,13 @@ describe('index loadTasks', function() {
       });
     }
 
-    it('should add task to gulp', function() {
+    it('should NOT add task to gulp', function() {
       loadTestTasks();
       expect(gulpMock.task).not.toHaveBeenCalled();
       expect(zkTaskRoadkillMock.getTask).not.toHaveBeenCalledWith();
     });
 
-    it('and enabled is overwritten in options should NOT add task to gulp', function() {
+    it('and enabled is overwritten in options should add task to gulp', function() {
       options[taskName] = {
         enabled: true,
         dependencies: []

@@ -17,12 +17,21 @@ function loadTasks(mode, options, gulp, tasks) {
     var taskOptionsFromLoader;
 
     if (_.isFunction(entry.getTask)) {
+
       zkTask = entry;
       taskOptionsFromLoader = defaultTaskOptionsFromLoader;
+
     } else {
+
       zkTask = entry.task;
       taskOptionsFromLoader = _.defaults(entry, defaultTaskOptionsFromLoader);
       delete taskOptionsFromLoader.task;
+
+      if (typeof taskOptionsFromLoader.mode !== undefined) {
+        _.extend(mode, taskOptionsFromLoader.mode);
+        delete taskOptionsFromLoader.mode;
+      }
+
     }
 
     compiledOptions = _.defaults(
