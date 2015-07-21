@@ -1,6 +1,6 @@
 {
   "name": "gulp-zkflow-load-tasks",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Task loader in gulp-zkflow format",
   "main": "src/index.js",
   "scripts": {
