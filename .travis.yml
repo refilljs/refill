@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "0.10"
+  - "0.12"
 
 before_install:
   - npm update -g npm
@@ -13,4 +14,5 @@ deploy:
   email: bolczyslaw@gmail.com
   api_key: $npmApiKey
   on:
-    branch: master
+    tags: true
+    repo: zaklinaczekodu/gulp-zkflow-load-tasks
