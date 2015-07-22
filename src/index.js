@@ -27,11 +27,6 @@ function loadTasks(mode, options, gulp, tasks) {
       taskOptionsFromLoader = _.defaults(entry, defaultTaskOptionsFromLoader);
       delete taskOptionsFromLoader.task;
 
-      if (typeof taskOptionsFromLoader.mode !== undefined) {
-        _.extend(mode, taskOptionsFromLoader.mode);
-        delete taskOptionsFromLoader.mode;
-      }
-
     }
 
     compiledOptions = _.defaults(

@@ -83,52 +83,6 @@ describe('index loadTasks', function() {
 
   });
 
-  describe('when zkTask is passed in object', function() {
-
-    var forceMode;
-
-    function loadTestTasks() {
-      loadTasks(mode, options, gulpMock, {
-        roadkill: {
-          task: zkTaskRoadkillMock,
-          mode: forceMode
-        }
-      });
-    }
-
-    it('and new mode is set should add this mode to current modes', function() {
-      forceMode = {
-        watch: true
-      };
-      loadTestTasks();
-      expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-        enabled: true,
-        dependencies: []
-      }, gulpMock, {
-        env: 'dev',
-        watch: true
-      });
-    });
-
-    it('and new mode is set should add this mode to current modes', function() {
-      forceMode = {
-        env: 'prod'
-      };
-      loadTestTasks();
-      expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-        enabled: true,
-        dependencies: []
-      }, gulpMock, {
-        env: 'prod'
-      });
-    });
-
-    afterEach(function() {
-      expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
-    });
-
-  });
-
   describe('when zkTask is passed in object with enabled set to false', function() {
 
     function loadTestTasks() {
