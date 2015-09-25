@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/zaklinaczekodu/gulp-zkflow-load-tasks",
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-zkflow-nodemodule": "~0.1.0"
+    "gulp": "^3.9.0",
+    "gulp-zkflow-nodemodule": "~0.1.1"
   },
   "dependencies": {
-    "lodash": "^3.6.0"
+    "lodash": "^3.10.1"
   }
 }

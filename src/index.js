@@ -2,42 +2,25 @@
 
 var _ = require('lodash');
 
-function loadTasks(mode, options, gulp, tasks) {
+function loadTasks(options, gulp) {
 
-  var defaultTaskOptionsFromLoader = {
+  var defaultOptions = {
     enabled: true,
     dependencies: []
   };
-  options = options || {};
+  var args = Array.prototype.slice.call(arguments, 2);
 
-  _.forEach(tasks, function(entry, taskName) {
+  _.forEach(options, function(entry, taskName) {
 
     var compiledOptions;
-    var zkTask;
-    var taskOptionsFromLoader;
 
-    if (_.isFunction(entry.getTask)) {
+    compiledOptions = _.defaults({}, entry, entry.task.defaultOptions, defaultOptions);
 
-      zkTask = entry;
-      taskOptionsFromLoader = defaultTaskOptionsFromLoader;
-
-    } else {
-
-      zkTask = entry.task;
-      taskOptionsFromLoader = _.defaults(entry, defaultTaskOptionsFromLoader);
-      delete taskOptionsFromLoader.task;
-
+    if (compiledOptions.enabled === false) {
+      return;
     }
 
-    compiledOptions = _.defaults(
-      options[taskName] || {},
-      taskOptionsFromLoader,
-      zkTask.defaultOptions
-    );
-
-    if (compiledOptions.enabled === false) return;
-
-    gulp.task(taskName, compiledOptions.dependencies, zkTask.getTask(compiledOptions, gulp, mode));
+    gulp.task(taskName, compiledOptions.dependencies, compiledOptions.task.getTask.apply(undefined, [compiledOptions, gulp].concat(args)));
 
   });
 
