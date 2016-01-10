@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 
-function loadTasks(options, gulp) {
+function zkflow(options, gulp) {
 
   var defaultOptions = {
     enabled: true,
@@ -26,4 +26,4 @@ function loadTasks(options, gulp) {
 
 }
 
-module.exports = loadTasks;
+module.exports = zkflow;

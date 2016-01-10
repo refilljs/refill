@@ -1,31 +1,28 @@
 {
-  "name": "gulp-zkflow-load-tasks",
+  "name": "zkflow",
   "version": "0.2.0",
-  "description": "Task loader in gulp-zkflow format",
+  "description": "Task loader in ZKflow format",
   "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zaklinaczekodu/gulp-zkflow-load-tasks.git"
+    "url": "https://github.com/zaklinaczekodu/zkflow.git"
   },
   "keywords": [
     "gulp",
     "zkflow",
     "tasks"
   ],
-  "author": "Piotr Baranowski <bolczyslaw@gmail.com> (https://github.com/zaklinaczekodu)",
+  "author": "Piotr Baranowski <piotr.baranowski@zaklinaczekodu.com> (https://github.com/zaklinaczekodu)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zaklinaczekodu/gulp-zkflow-load-tasks/issues"
+    "url": "https://github.com/zaklinaczekodu/zkflow/issues"
   },
-  "homepage": "https://github.com/zaklinaczekodu/gulp-zkflow-load-tasks",
+  "homepage": "https://github.com/zaklinaczekodu/zkflow",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-zkflow-nodemodule": "~0.1.1"
+    "gulp": "3.9.0",
+    "gulp-zkflow-nodemodule": "0.1.1"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "3.10.1"
   }
 }
