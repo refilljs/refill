@@ -1,7 +1,7 @@
 {
   "name": "zkflow",
   "version": "0.2.0",
-  "description": "Task loader in ZKflow format",
+  "description": "Loader for reusable gulp tasks",
   "main": "src/index.js",
   "repository": {
     "type": "git",
@@ -23,6 +23,10 @@
     "gulp-zkflow-nodemodule": "0.1.1"
   },
   "dependencies": {
-    "lodash": "3.10.1"
+    "lodash.defaults": "4.0.0",
+    "lodash.foreach": "4.0.0"
+  },
+  "peerDependencies": {
+    "gulp": "3.*"
   }
 }
