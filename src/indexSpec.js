@@ -2,7 +2,7 @@
 
 var loadTasks = require('./');
 
-describe('index loadTasks', function() {
+describe('zkflow', function() {
 
   var zkTaskRoadkillMock;
   var roadkillTask;

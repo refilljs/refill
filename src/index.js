@@ -1,8 +1,9 @@
 'use strict';
 
-var _ = require('lodash');
+var forEach = require('lodash.foreach');
+var defaults = require('lodash.defaults');
 
-function loadTasks(options, gulp) {
+function zkflow(options, gulp) {
 
   var defaultOptions = {
     enabled: true,
@@ -10,11 +11,11 @@ function loadTasks(options, gulp) {
   };
   var args = Array.prototype.slice.call(arguments, 2);
 
-  _.forEach(options, function(entry, taskName) {
+  forEach(options, function(entry, taskName) {
 
     var compiledOptions;
 
-    compiledOptions = _.defaults({}, entry, entry.task.defaultOptions, defaultOptions);
+    compiledOptions = defaults({}, entry, entry.task.defaultOptions, defaultOptions);
 
     if (compiledOptions.enabled === false) {
       return;
@@ -26,4 +27,4 @@ function loadTasks(options, gulp) {
 
 }
 
-module.exports = loadTasks;
+module.exports = zkflow;
