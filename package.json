@@ -1,6 +1,6 @@
 {
   "name": "zkflow",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Loader for reusable gulp tasks",
   "main": "src/index.js",
   "repository": {
