@@ -2,6 +2,7 @@
 
 var forEach = require('lodash.foreach');
 var defaults = require('lodash.defaults');
+var chalk = require('chalk');
 
 function zkflow(options, gulp) {
 
@@ -10,6 +11,10 @@ function zkflow(options, gulp) {
     dependencies: []
   };
   var args = Array.prototype.slice.call(arguments, 2);
+
+  console.log('');
+  console.log(' %s %s %s', chalk.green('◹'), chalk.green.bold('ZKflow'), chalk.grey('made by Zaklinacze Kodu'));
+  console.log('');
 
   forEach(options, function(entry, taskName) {
 

@@ -19,6 +19,7 @@ describe('zkflow', function() {
       env: 'dev'
     };
     zkTaskRoadkillMock.getTask.and.returnValue(roadkillTask);
+    spyOn(console, 'log');
   });
 
   describe('when zkTask is passed in object', function() {
