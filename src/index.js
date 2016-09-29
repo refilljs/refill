@@ -4,7 +4,7 @@ var forEach = require('lodash.foreach');
 var defaults = require('lodash.defaults');
 var chalk = require('chalk');
 
-function zkflow(options, gulp) {
+function refill(options, gulp) {
 
   var defaultOptions = {
     enabled: true,
@@ -14,7 +14,7 @@ function zkflow(options, gulp) {
 
   /* eslint-disable no-console */
   console.log('');
-  console.log(' %s %s %s', chalk.green('◹'), chalk.green.bold('ZKflow'), chalk.grey('made by Zaklinacze Kodu'));
+  console.log(' %s %s %s', chalk.green('◹'), chalk.green.bold('Refill'), chalk.grey('made by Zaklinacze Kodu'));
   console.log('');
   /* eslint-enable no-console */
 
@@ -34,4 +34,4 @@ function zkflow(options, gulp) {
 
 }
 
-module.exports = zkflow;
+module.exports = refill;
