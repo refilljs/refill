@@ -2,9 +2,9 @@
 
 var loadTasks = require('./');
 
-describe('zkflow', function() {
+describe('refill', function() {
 
-  var zkTaskRoadkillMock;
+  var refillTaskRoadkillMock;
   var roadkillTask;
   var gulpMock;
   var mode;
@@ -12,22 +12,22 @@ describe('zkflow', function() {
 
   beforeEach(function() {
     taskName = 'roadkill';
-    zkTaskRoadkillMock = jasmine.createSpyObj('zkTaskRoadkillMock', ['getTask']);
+    refillTaskRoadkillMock = jasmine.createSpyObj('refillTaskRoadkillMock', ['getTask']);
     roadkillTask = jasmine.createSpy('roadkillTask');
     gulpMock = jasmine.createSpyObj('gulpMock', ['task']);
     mode = {
       env: 'dev'
     };
-    zkTaskRoadkillMock.getTask.and.returnValue(roadkillTask);
+    refillTaskRoadkillMock.getTask.and.returnValue(roadkillTask);
     spyOn(console, 'log');
   });
 
-  describe('when zkTask is passed in object', function() {
+  describe('when refillTask is passed in object', function() {
 
     function loadTestTasks() {
       loadTasks({
         roadkill: {
-          task: zkTaskRoadkillMock
+          task: refillTaskRoadkillMock
         }
       }, gulpMock, mode);
     }
@@ -35,21 +35,21 @@ describe('zkflow', function() {
     it('should add task to gulp', function() {
       loadTestTasks();
       expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
-      expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
+      expect(refillTaskRoadkillMock.getTask).toHaveBeenCalledWith({
         enabled: true,
         dependencies: [],
-        task: zkTaskRoadkillMock
+        task: refillTaskRoadkillMock
       }, gulpMock, mode);
     });
 
   });
 
-  describe('when zkTask is passed in object with enabled set to false', function() {
+  describe('when refillTask is passed in object with enabled set to false', function() {
 
     function loadTestTasks() {
       loadTasks({
         roadkill: {
-          task: zkTaskRoadkillMock,
+          task: refillTaskRoadkillMock,
           enabled: false
         }
       }, gulpMock, mode);
@@ -58,19 +58,19 @@ describe('zkflow', function() {
     it('should NOT add task to gulp', function() {
       loadTestTasks();
       expect(gulpMock.task).not.toHaveBeenCalled();
-      expect(zkTaskRoadkillMock.getTask).not.toHaveBeenCalled();
+      expect(refillTaskRoadkillMock.getTask).not.toHaveBeenCalled();
     });
 
   });
 
-  describe('when zkTask is passed in object with dependencies set', function() {
+  describe('when refillTask is passed in object with dependencies set', function() {
 
     var dependencies;
 
     function loadTestTasks() {
       loadTasks({
         roadkill: {
-          task: zkTaskRoadkillMock,
+          task: refillTaskRoadkillMock,
           dependencies: dependencies
         }
       }, gulpMock, mode);
@@ -83,11 +83,11 @@ describe('zkflow', function() {
     it('should add task to gulp with this dependencies', function() {
       loadTestTasks();
       expect(gulpMock.task).toHaveBeenCalledWith(taskName, dependencies, roadkillTask);
-      expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-          task: zkTaskRoadkillMock,
-          enabled: true,
-          dependencies: dependencies
-        },
+      expect(refillTaskRoadkillMock.getTask).toHaveBeenCalledWith({
+        task: refillTaskRoadkillMock,
+        enabled: true,
+        dependencies: dependencies
+      },
         gulpMock,
         mode
       );
@@ -95,14 +95,14 @@ describe('zkflow', function() {
 
   });
 
-  describe('when zkTask is passed with additional option', function() {
+  describe('when refillTask is passed with additional option', function() {
 
     var additionalOption;
 
     function loadTestTasks() {
       loadTasks({
         roadkill: {
-          task: zkTaskRoadkillMock,
+          task: refillTaskRoadkillMock,
           additionalOption: additionalOption
         }
       }, gulpMock, mode);
@@ -115,12 +115,12 @@ describe('zkflow', function() {
     it('should call task with this option', function() {
       loadTestTasks();
       expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
-      expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-          task: zkTaskRoadkillMock,
-          enabled: true,
-          dependencies: [],
-          additionalOption: additionalOption
-        },
+      expect(refillTaskRoadkillMock.getTask).toHaveBeenCalledWith({
+        task: refillTaskRoadkillMock,
+        enabled: true,
+        dependencies: [],
+        additionalOption: additionalOption
+      },
         gulpMock,
         mode
       );
@@ -128,7 +128,7 @@ describe('zkflow', function() {
 
   });
 
-  describe('when zkTask has some default option', function() {
+  describe('when refillTask has some default option', function() {
 
     var defaultOption;
     var loadTaskOptions;
@@ -141,23 +141,23 @@ describe('zkflow', function() {
 
     beforeEach(function() {
       defaultOption = 'defaultValue';
-      zkTaskRoadkillMock.defaultOptions = {
+      refillTaskRoadkillMock.defaultOptions = {
         defaultOption: defaultOption
       };
       loadTaskOptions = {
-        task: zkTaskRoadkillMock
+        task: refillTaskRoadkillMock
       };
     });
 
     it('should call task with this option', function() {
       loadTestTasks();
       expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
-      expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-          task: zkTaskRoadkillMock,
-          enabled: true,
-          dependencies: [],
-          defaultOption: defaultOption
-        },
+      expect(refillTaskRoadkillMock.getTask).toHaveBeenCalledWith({
+        task: refillTaskRoadkillMock,
+        enabled: true,
+        dependencies: [],
+        defaultOption: defaultOption
+      },
         gulpMock,
         mode
       );
@@ -169,12 +169,12 @@ describe('zkflow', function() {
         loadTaskOptions.defaultOption = 'value overwritten by load tasks options';
         loadTestTasks();
         expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
-        expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-            task: zkTaskRoadkillMock,
-            enabled: true,
-            dependencies: [],
-            defaultOption: loadTaskOptions.defaultOption
-          },
+        expect(refillTaskRoadkillMock.getTask).toHaveBeenCalledWith({
+          task: refillTaskRoadkillMock,
+          enabled: true,
+          dependencies: [],
+          defaultOption: loadTaskOptions.defaultOption
+        },
           gulpMock,
           mode
         );
