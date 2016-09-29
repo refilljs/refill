@@ -84,10 +84,10 @@ describe('zkflow', function() {
       loadTestTasks();
       expect(gulpMock.task).toHaveBeenCalledWith(taskName, dependencies, roadkillTask);
       expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-          task: zkTaskRoadkillMock,
-          enabled: true,
-          dependencies: dependencies
-        },
+        task: zkTaskRoadkillMock,
+        enabled: true,
+        dependencies: dependencies
+      },
         gulpMock,
         mode
       );
@@ -116,11 +116,11 @@ describe('zkflow', function() {
       loadTestTasks();
       expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
       expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-          task: zkTaskRoadkillMock,
-          enabled: true,
-          dependencies: [],
-          additionalOption: additionalOption
-        },
+        task: zkTaskRoadkillMock,
+        enabled: true,
+        dependencies: [],
+        additionalOption: additionalOption
+      },
         gulpMock,
         mode
       );
@@ -153,11 +153,11 @@ describe('zkflow', function() {
       loadTestTasks();
       expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
       expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-          task: zkTaskRoadkillMock,
-          enabled: true,
-          dependencies: [],
-          defaultOption: defaultOption
-        },
+        task: zkTaskRoadkillMock,
+        enabled: true,
+        dependencies: [],
+        defaultOption: defaultOption
+      },
         gulpMock,
         mode
       );
@@ -170,11 +170,11 @@ describe('zkflow', function() {
         loadTestTasks();
         expect(gulpMock.task).toHaveBeenCalledWith(taskName, [], roadkillTask);
         expect(zkTaskRoadkillMock.getTask).toHaveBeenCalledWith({
-            task: zkTaskRoadkillMock,
-            enabled: true,
-            dependencies: [],
-            defaultOption: loadTaskOptions.defaultOption
-          },
+          task: zkTaskRoadkillMock,
+          enabled: true,
+          dependencies: [],
+          defaultOption: loadTaskOptions.defaultOption
+        },
           gulpMock,
           mode
         );

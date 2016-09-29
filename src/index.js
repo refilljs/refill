@@ -12,9 +12,11 @@ function zkflow(options, gulp) {
   };
   var args = Array.prototype.slice.call(arguments, 2);
 
+  /* eslint-disable no-console */
   console.log('');
   console.log(' %s %s %s', chalk.green('◹'), chalk.green.bold('ZKflow'), chalk.grey('made by Zaklinacze Kodu'));
   console.log('');
+  /* eslint-enable no-console */
 
   forEach(options, function(entry, taskName) {
 
